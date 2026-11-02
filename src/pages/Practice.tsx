@@ -69,7 +69,7 @@ export default function Practice() {
 
   return (
     <div className={cn('mx-auto max-w-2xl', checked ? 'pb-[30rem]' : 'pb-48')}>
-      <h1 className="display text-4xl font-extrabold">{t.practice}</h1>
+      <h1 className="display text-4xl font-bold">{t.practice}</h1>
       <div className="mt-4 space-y-3">
         <TopicChips topics={quizTopics} selected={topics} onChange={s => { setTopics(s); resetFilters() }} allLabel={t.all} counts={counts} />
         <div className="inline-flex rounded-2xl border-2 border-border bg-card p-1 text-sm font-semibold">
@@ -112,7 +112,7 @@ export default function Practice() {
               <div className="mb-3 flex gap-3">
                 {ok ? <CircleCheck className="size-8 shrink-0 text-good" /> : <CircleX className="size-8 shrink-0 text-bad" />}
                 <div className="min-w-0 flex-1">
-                  <div className={cn('font-heading text-xl font-extrabold', ok ? 'text-good' : 'text-bad')}>{ok ? (tally.streak >= 3 ? t.streakRight(tally.streak) : t.correct) : t.wrong}</div>
+                  <div className={cn('font-heading text-xl font-bold', ok ? 'text-good' : 'text-bad')}>{ok ? (tally.streak >= 3 ? t.streakRight(tally.streak) : t.correct) : t.wrong}</div>
                   <div className="max-h-[32vh] overflow-y-auto">
                     {!ok && <div className="mt-0.5 flex flex-wrap items-baseline gap-x-1.5 text-[0.95rem] font-semibold text-bad"><span>{t.theAnswer}:</span><Html as="span" html={q.o[q.a]} className="lesson inline text-[0.95rem]" /></div>}
                     <Html html={q.why} className="lesson mt-1 text-[0.95rem]" />

@@ -61,7 +61,7 @@ export default function ExamRun() {
         {back}
         <div className="tile p-7 text-center sm:p-10">
           <div className="press mx-auto mb-4 grid size-16 place-items-center rounded-3xl bg-course text-white"><ListChecks className="size-8" /></div>
-          <h1 className="display text-3xl font-extrabold">{exam.title}</h1>
+          <h1 className="display text-3xl font-bold">{exam.title}</h1>
           <p className="mt-3 text-muted-foreground">{exam.blurb}</p>
           <div className="mt-4 flex justify-center gap-4 text-sm font-medium">
             <span className="inline-flex items-center gap-1"><ListChecks className="size-4" />{exam.kind === 'written' ? t.problems(exam.items.length) : t.questions(exam.items.length)}</span>
@@ -83,7 +83,7 @@ export default function ExamRun() {
         <div className="tile p-7 text-center animate-pop">
           <Trophy className="mx-auto size-9 text-course" />
           <div className="mt-2 text-sm font-semibold uppercase tracking-widest text-course">{t.score}</div>
-          <div className="display text-6xl font-extrabold tabular-nums text-course">{pct}%</div>
+          <div className="display text-6xl font-bold tabular-nums text-course">{pct}%</div>
           <div className="mt-1 text-sm text-muted-foreground tabular-nums">{last.score} / {last.max} · {fmtTime(last.secs)}</div>
           <Button variant="course" size="xl" className="mt-6" onClick={start}><Play className="size-5" />{t.retake}</Button>
         </div>
@@ -110,7 +110,7 @@ export default function ExamRun() {
   return (
     <div className="mx-auto max-w-3xl">
       {back}
-      <h1 className="display text-3xl font-extrabold">{exam.title}</h1>
+      <h1 className="display text-3xl font-bold">{exam.title}</h1>
       <p className="mt-1 text-sm text-muted-foreground">{exam.kind === 'written' ? t.writtenHow : t.mcqHow}</p>
       <div className="mt-6 space-y-5">
         {exam.kind === 'mcq'

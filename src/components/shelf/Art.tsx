@@ -20,7 +20,7 @@ export function CourseArt({ id, code, className }: { id: string; code: string; c
         {!GLYPH[id] && Array.from({ length: 8 }, (_, i) => <path key={i} d={`M${i * 28} 0l40 120`} />)}
       </svg>
       <div className="pattern-dots absolute inset-0 opacity-40" />
-      <span className="absolute bottom-1 left-4 select-none font-heading text-[5.5rem] font-extrabold leading-none tracking-tighter text-white/90 drop-shadow-[0_4px_0_rgba(0,0,0,.12)]">{glyph}</span>
+      <span className="absolute bottom-1 left-4 select-none font-heading text-[5.5rem] font-bold leading-none tracking-tighter text-white/90 drop-shadow-[0_4px_0_rgba(0,0,0,.12)]">{glyph}</span>
     </div>
   )
 }

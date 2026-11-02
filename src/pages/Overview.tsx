@@ -27,7 +27,7 @@ export default function Overview() {
         <CourseArt id={c.id} code={c.code} className="absolute inset-0 [&>span]:-right-2 [&>span]:left-auto [&>span]:bottom-[-1.2rem] [&>span]:text-[9rem] [&>span]:text-white/15" />
         <div className="relative p-6 sm:p-8">
           <div className="eyebrow-label text-white/75">{s.read ? t.continueReading : t.startReading}</div>
-          <div className="mt-2 font-heading text-[1.75rem] font-extrabold leading-tight sm:text-4xl">{nextCh ? nextCh.title : c.title}</div>
+          <div className="mt-2 font-heading text-[1.75rem] font-bold leading-tight sm:text-4xl">{nextCh ? nextCh.title : c.title}</div>
           {nextCh && <div className="mt-1 text-sm font-medium text-white/80">{t.chapter} {nextCh.n} / {c.chapters.length}</div>}
           <div className="mt-5 flex flex-wrap items-center gap-3">
             <Button asChild variant="tactile" size="xl" className="border-transparent text-course-ink [--edge:rgba(0,0,0,.18)]">

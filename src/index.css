@@ -2,7 +2,6 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/inter";
-@import "@fontsource-variable/bricolage-grotesque";
 @import "@fontsource/jetbrains-mono/400.css";
 @import "katex/dist/katex.min.css";
 @import "./lesson.css";
@@ -10,7 +9,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-    --font-heading: 'Bricolage Grotesque Variable', 'Inter Variable', sans-serif;
+    --font-heading: 'Inter Variable', 'Helvetica Neue', Arial, sans-serif;
     --font-sans: 'Inter Variable', 'Helvetica Neue', Arial, sans-serif;
     --font-mono: 'JetBrains Mono', Menlo, monospace;
     --color-course: var(--course);
@@ -168,7 +167,7 @@
 a.tile, button.tile { transition: transform .08s ease, box-shadow .08s ease, border-color .15s }
 a.tile:hover, button.tile:hover:not(:disabled) { border-color: color-mix(in oklch, var(--course) 35%, var(--border)) }
 a.tile:active, button.tile:active:not(:disabled) { transform: translateY(2px); box-shadow: 0 1px 0 0 var(--border) }
-.display { font-family: var(--font-heading); font-variation-settings: "opsz" 96, "wdth" 100; letter-spacing: -0.035em; line-height: 1.02 }
+.display { font-family: var(--font-heading); letter-spacing: -0.03em; line-height: 1.08 }
 .eyebrow-label { font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase }
 .pattern-dots { background-image: radial-gradient(color-mix(in oklch, white 30%, transparent) 1.2px, transparent 1.3px); background-size: 16px 16px }
 @keyframes slide-up { from { transform: translateY(100%); opacity: .4 } to { transform: none; opacity: 1 } }

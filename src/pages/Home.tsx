@@ -24,12 +24,12 @@ export default function Home() {
     <div className="min-h-dvh">
       <header className="mx-auto flex max-w-5xl items-center gap-2.5 px-4 pt-5">
         <Logo className="size-9" />
-        <span className="font-heading text-xl font-extrabold tracking-tight">Study Shelf</span>
+        <span className="font-heading text-xl font-bold tracking-tight">Study Shelf</span>
       </header>
 
       <main className="mx-auto max-w-5xl px-4 pb-16">
         <section className="pb-6 pt-8 sm:pt-12">
-          <h1 className="display max-w-3xl text-[2.6rem] font-extrabold sm:text-6xl">
+          <h1 className="display max-w-3xl text-[2.6rem] font-bold sm:text-6xl">
             Learn it. Practise it. <span className="text-[#e07a3f]">Pass it.</span>
           </h1>
           <p className="mt-4 max-w-xl text-[17px] leading-relaxed text-muted-foreground">

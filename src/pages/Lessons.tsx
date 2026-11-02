@@ -13,7 +13,7 @@ export default function Lessons() {
   return (
     <div className="mx-auto max-w-2xl">
       <div className="mb-2 flex items-end justify-between gap-4">
-        <h1 className="display text-4xl font-extrabold">{t.lessons}</h1>
+        <h1 className="display text-4xl font-bold">{t.lessons}</h1>
         <span className="pb-1 text-sm font-semibold tabular-nums text-muted-foreground">{read}/{c.chapters.length}</span>
       </div>
       <Bar value={(100 * read) / Math.max(1, c.chapters.length)} className="mb-8" />
@@ -24,7 +24,7 @@ export default function Lessons() {
           return (
             <li key={ch.n} className="relative pb-4 pl-[4.25rem]">
               {i < c.chapters.length - 1 && <span className={cn('absolute left-[1.6rem] top-14 bottom-0 w-1 rounded-full', done ? 'bg-course' : 'bg-border')} />}
-              <span className={cn('absolute left-0 top-1 grid size-[3.25rem] place-items-center rounded-full font-heading text-xl font-extrabold',
+              <span className={cn('absolute left-0 top-1 grid size-[3.25rem] place-items-center rounded-full font-heading text-xl font-bold',
                 done ? 'press bg-course text-white' : isNext ? 'press bg-card text-course ring-4 ring-course/25 [--edge:var(--course-edge)]' : 'border-2 border-border bg-card text-muted-foreground [box-shadow:0_3px_0_0_var(--border)]')}>
                 {done ? <Check className="size-6" strokeWidth={3} /> : ch.n}
               </span>

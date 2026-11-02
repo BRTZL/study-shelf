@@ -52,7 +52,7 @@ export default function Flashcards() {
   return (
     <div className="mx-auto max-w-2xl">
       <div className="mb-4 flex items-end justify-between gap-3">
-        <h1 className="display text-4xl font-extrabold">{t.cards}</h1>
+        <h1 className="display text-4xl font-bold">{t.cards}</h1>
         <span className="text-sm text-muted-foreground tabular-nums">{known}/{scope.length}</span>
       </div>
       <Bar value={(100 * known) / Math.max(1, scope.length)} className="mb-5" />

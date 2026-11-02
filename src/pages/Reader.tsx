@@ -39,7 +39,7 @@ export default function Reader() {
       <Link to=".." relative="path" className="mb-4 inline-flex items-center gap-1.5 rounded-xl text-sm font-semibold text-muted-foreground hover:text-foreground"><List className="size-4" />{t.backToLessons}</Link>
       <header className="mb-8">
         <div className="eyebrow-label text-course">{t.chapter} {ch.n} / {c.chapters.length}</div>
-        <h1 className="display mt-2 text-[2.1rem] font-extrabold sm:text-5xl">{ch.title}</h1>
+        <h1 className="display mt-2 text-[2.1rem] font-bold sm:text-5xl">{ch.title}</h1>
         <p className="mt-3 text-lg leading-relaxed text-muted-foreground">{ch.lead}</p>
         {ch.src && <p className="mt-3 inline-block rounded-lg bg-secondary px-2.5 py-1 text-xs font-medium text-muted-foreground">{ch.src}</p>}
       </header>

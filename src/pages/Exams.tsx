@@ -8,7 +8,7 @@ export default function Exams() {
   const date = (ms: number) => new Date(ms).toLocaleDateString(c.lang === 'tr' ? 'tr-TR' : 'en-GB', { day: 'numeric', month: 'short' })
   return (
     <div className="mx-auto max-w-2xl">
-      <h1 className="display text-4xl font-extrabold">{t.exams}</h1>
+      <h1 className="display text-4xl font-bold">{t.exams}</h1>
       <div className="mt-6 space-y-3.5">
         {c.exams.map(e => {
           const st = p.exams[e.id]
@@ -20,7 +20,7 @@ export default function Exams() {
                 <Ring value={best ?? 0} size={58} stroke={6} className={best === null ? 'text-muted-foreground' : 'text-course'}>
                   {best === null
                     ? (e.kind === 'written' ? <PenLine className="size-5 text-muted-foreground" /> : <ListChecks className="size-5 text-muted-foreground" />)
-                    : <span className="text-sm font-extrabold tabular-nums text-foreground">{best}</span>}
+                    : <span className="text-sm font-bold tabular-nums text-foreground">{best}</span>}
                 </Ring>
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-2">

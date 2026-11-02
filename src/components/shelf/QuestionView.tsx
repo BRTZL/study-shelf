@@ -12,7 +12,7 @@ export function QuestionView({ q, picked, onPick, reveal, number, sourceLabel, e
   return (
     <div>
       <div className="flex gap-3">
-        {number && <span className="grid size-8 shrink-0 place-items-center rounded-xl bg-course-soft font-heading text-sm font-extrabold text-course">{number}</span>}
+        {number && <span className="grid size-8 shrink-0 place-items-center rounded-xl bg-course-soft font-heading text-sm font-bold text-course">{number}</span>}
         <Html html={q.q} className="lesson min-w-0 flex-1 text-[1.06rem] font-semibold leading-relaxed" />
       </div>
       <div className="mt-5 grid gap-2.5">
@@ -29,7 +29,7 @@ export function QuestionView({ q, picked, onPick, reveal, number, sourceLabel, e
                 state === 'right' && 'border-good bg-good-soft shadow-[0_3px_0_0_var(--good)]',
                 state === 'wrong' && 'border-bad bg-bad-soft shadow-[0_3px_0_0_var(--bad)]',
                 reveal && state === 'idle' && 'opacity-60')}>
-              <span className={cn('grid size-8 shrink-0 place-items-center rounded-xl border-2 text-sm font-extrabold',
+              <span className={cn('grid size-8 shrink-0 place-items-center rounded-xl border-2 text-sm font-bold',
                 state === 'right' ? 'border-good bg-good text-white' : state === 'wrong' ? 'border-bad bg-bad text-white'
                   : state === 'picked' ? 'border-course bg-course text-white' : 'border-border text-muted-foreground')}>
                 {state === 'right' ? <Check className="size-4" strokeWidth={3} /> : state === 'wrong' ? <X className="size-4" strokeWidth={3} /> : L[i]}
