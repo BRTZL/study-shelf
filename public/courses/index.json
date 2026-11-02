@@ -1,0 +1,22 @@
+{
+ "courses": [
+  {
+   "id": "csc2201",
+   "code": "CSC 2201",
+   "title": "Programming from Zero",
+   "blurb": "Algorithms, flowcharts and Python basics — explained for someone who has never written code. Covers 18.09–26.10 lectures and the full exercise sheet.",
+   "lang": "en",
+   "color": "#0d6e6e",
+   "soft": "#e3f2f0",
+   "pdf": "courses/csc2201/CSC2201_Exam_Guide.pdf",
+   "pdfPages": 66,
+   "counts": {
+    "chapters": 10,
+    "questions": 44,
+    "cards": 35,
+    "exams": 3
+   },
+   "updated": "2026-11-02"
+  }
+ ]
+}

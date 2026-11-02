@@ -1,0 +1,130 @@
+/* Screen version of the PDF guide styles, scoped to injected lesson HTML.
+   Tailwind's preflight strips list/heading/table styling, so everything is restated here. */
+.lesson {
+  --ink: #22303f; --soft: #56657a; --line: #e2e0d8; --paper: #f7f5f0;
+  --deep: #17324a;
+  --coral: #c8492f; --coral2: #fcece8; --amber2: #fdf4e1; --plum: #5a4fb0; --plum2: #eeedfb; --teal: #0d6e6e; --teal2: #e3f2f0;
+  color: var(--ink);
+  font-size: 1.0625rem;
+  line-height: 1.68;
+  overflow-wrap: break-word;
+}
+.lesson > :first-child { margin-top: 0 }
+.lesson p { margin: 0 0 .9em }
+.lesson ul, .lesson ol { margin: 0 0 1em; padding-left: 1.4em }
+.lesson ul { list-style: disc } .lesson ol { list-style: decimal }
+.lesson li { margin-bottom: .3em }
+.lesson li::marker { color: var(--course) }
+.lesson b, .lesson strong { font-weight: 650 }
+.lesson em, .lesson i { font-style: italic }
+.lesson a { color: var(--course); text-decoration: underline; text-underline-offset: 2px }
+.lesson h2, .lesson h3 { font-family: var(--font-heading); line-height: 1.25; color: var(--deep); scroll-margin-top: 5rem }
+.lesson h2 { font-size: 1.55rem; font-weight: 700; margin: 2.2em 0 .6em; color: var(--course) }
+.lesson h3 { font-size: 1.2rem; font-weight: 650; margin: 1.6em 0 .45em }
+.lesson h2 + h3 { margin-top: .6em }
+.lesson code, .lesson .m, .lesson .mono { font-family: var(--font-mono); font-size: .86em; background: #f0eee8; padding: .1em .35em; border-radius: 4px; font-variant-ligatures: none }
+.lesson .mark, .lesson .chapter { display: none }
+.lesson .katex { font-size: 1.07em }
+.lesson .katex-display { margin: .8em 0; overflow-x: auto; overflow-y: hidden; padding: .15em 0 }
+.lesson .katex svg { display: inline; max-width: none }
+.lesson .rune { font-size: 1.25em }
+
+/* Callouts */
+.lesson .callout { display: flex; gap: .75rem; border-radius: .75rem; padding: .85rem 1rem; margin: 1.1em 0 }
+.lesson .ci { flex: none; width: 1.5rem; height: 1.5rem; border-radius: 50%; color: #fff; font: 700 .85rem/1.5rem var(--font-sans); text-align: center; margin-top: .1rem }
+.lesson .cb { min-width: 0; flex: 1 }
+.lesson .ct { font-weight: 700; margin-bottom: .15em }
+.lesson .cb > :last-child, .lesson .cb p:last-child { margin-bottom: 0 }
+.lesson .trap { background: var(--coral2) } .lesson .trap .ci { background: var(--coral) } .lesson .trap .ct { color: #9f3621 }
+.lesson .tip { background: var(--amber2) } .lesson .tip .ci { background: #d08a14 } .lesson .tip .ct { color: #855308 }
+.lesson .idea { background: var(--teal2) } .lesson .idea .ci { background: var(--teal) } .lesson .idea .ct { color: #0b5a5a }
+.lesson .exam { background: var(--plum2) } .lesson .exam .ci { background: var(--plum) } .lesson .exam .ct { color: #453c94 }
+.lesson .note { background: #eef1f5 } .lesson .note .ci { background: #667892 } .lesson .note .ct { color: #42526a }
+
+/* Tables scroll sideways on phones instead of squashing */
+.lesson .tablewrap { overflow-x: auto; margin: 1em 0; border-radius: .5rem }
+.lesson table { width: 100%; border-collapse: collapse; font-size: .92em; min-width: 28rem }
+.lesson .tablewrap > table { margin: 0 }
+.lesson th { background: var(--deep); color: #fff; text-align: left; font-weight: 600; padding: .5em .75em }
+.lesson td { padding: .5em .75em; border-bottom: 1px solid var(--line); vertical-align: top }
+.lesson tbody tr:nth-child(even) td { background: #f8f7f3 }
+.lesson table.trace td, .lesson table.trace th { text-align: center; font-family: var(--font-mono); font-size: .9em }
+.lesson .side { display: grid; grid-template-columns: 1fr; gap: 1rem; align-items: start }
+@media (min-width: 720px) { .lesson .side { grid-template-columns: 1fr 1fr } .lesson .side.w { grid-template-columns: 1.25fr 1fr } }
+.lesson .side > div > :first-child { margin-top: 0 }
+
+/* Figures */
+.lesson figure { margin: 1.2em 0; text-align: center }
+.lesson figure img { display: inline-block; max-width: 100%; height: auto; border-radius: .6rem; border: 1px solid var(--line) }
+.lesson figure.small img { max-width: min(100%, 26rem) }
+.lesson figcaption { font-size: .85em; color: var(--soft); margin-top: .4em }
+
+/* Formulas and worked examples */
+.lesson .formula { background: #fff; border: 1.5px solid var(--course); border-radius: .75rem; padding: .35rem 1rem; margin: 1em 0 }
+.lesson .formula .fl { font: 700 .7rem var(--font-sans); letter-spacing: .1em; color: var(--course); text-transform: uppercase; margin: .2rem 0 .3rem }
+.lesson .example { margin: 1.6em 0 1.2em }
+.lesson .exq { background: #f1f4f7; border-left: 3px solid var(--course); padding: .75rem 1rem; border-radius: 0 .6rem .6rem 0; margin: 1.6em 0 .7em }
+.lesson .example .exq { margin-top: 0 }
+.lesson .ex { font: 700 .72rem var(--font-sans); letter-spacing: .08em; color: #fff; background: var(--course); display: inline-block; padding: .15rem .55rem; border-radius: .35rem; margin-right: .5rem; text-transform: uppercase; vertical-align: .1em }
+.lesson ol.work { counter-reset: w; list-style: none; padding: 0; margin: 0 0 .6em }
+.lesson ol.work > li { counter-increment: w; position: relative; padding: .25em 0 .25em 2.3em; margin: 0 }
+.lesson ol.work > li::before { content: counter(w); position: absolute; left: 0; top: .4em; width: 1.5em; height: 1.5em; border-radius: 50%; background: var(--course-soft); color: var(--course); font: 700 .8rem/1.5em var(--font-sans); text-align: center }
+.lesson .why { color: var(--soft); font-size: .92em }
+.lesson .result { background: var(--course-soft); border-radius: .6rem; padding: .6rem 1rem; margin: .3em 0 .8em }
+.lesson .result::before { content: var(--result-label, "Answer"); font: 700 .68rem var(--font-sans); letter-spacing: .1em; text-transform: uppercase; color: var(--course); display: block }
+
+/* Terms, timeline, tree */
+.lesson dl.terms { margin: 1em 0; display: grid; grid-template-columns: 1fr; gap: .2em 1rem }
+@media (min-width: 640px) { .lesson dl.terms { grid-template-columns: auto 1fr } }
+.lesson dl.terms dt { font-weight: 700; color: var(--deep) }
+.lesson dl.terms dd { margin: 0 0 .4em }
+.lesson .timeline { position: relative; margin: 1.2em 0; padding-left: 1.6rem; border-left: 3px solid var(--course) }
+.lesson .timeline .ev { position: relative; margin: 0 0 .7em }
+.lesson .timeline .ev::before { content: ""; position: absolute; left: calc(-1.6rem - 1.5px - .45rem); top: .45em; width: .9rem; height: .9rem; border-radius: 50%; background: #fff; border: 3px solid var(--course); box-sizing: border-box }
+.lesson .timeline .ev > b:first-child { display: inline-block; min-width: 5.5rem; color: var(--course); font-weight: 700 }
+.lesson ul.tree, .lesson ul.tree ul { list-style: none; margin: 0; padding-left: 1.2rem }
+.lesson ul.tree { padding-left: 0; margin: 1em 0 }
+.lesson ul.tree li { position: relative; padding-left: .9rem; margin: .2em 0 }
+.lesson ul.tree ul li::before { content: ""; position: absolute; left: -.3rem; top: 0; width: .85rem; height: .8em; border-left: 1.5px solid #a9b6c3; border-bottom: 1.5px solid #a9b6c3; border-bottom-left-radius: .3rem }
+.lesson ul.tree .k { font-weight: 700; color: var(--deep) }
+
+/* CSC2201 code boxes, flowcharts, steps */
+.lesson .code { border-radius: .7rem; overflow: hidden; border: 1px solid #e6e2d8; margin: 1em 0 }
+.lesson .codecap { background: #ece8de; padding: .3rem .9rem; font-weight: 600; font-size: .82em; color: #54503f }
+.lesson .code > pre { margin: 0; background: var(--paper); padding: .7rem .9rem; font: 400 .86rem/1.55 var(--font-mono); white-space: pre-wrap; overflow-wrap: anywhere; font-variant-ligatures: none }
+.lesson .ln { display: inline-block; width: 1.7rem; color: #b1ad9f; user-select: none }
+.lesson .out { background: #20303d; color: #e8f0f3; padding: .55rem .9rem .7rem }
+.lesson .outlabel { font: 700 .65rem var(--font-sans); letter-spacing: .12em; text-transform: uppercase; color: #8fd3c8; margin-bottom: .2rem }
+.lesson .out pre { margin: 0; font: 400 .85rem/1.45 var(--font-mono); white-space: pre-wrap }
+.lesson .outnote { font-size: .78em; color: #b9c9d2; margin-top: .3em }
+.lesson .outnote code { background: #34495a; color: #e8f0f3 }
+.lesson .k, .lesson .kn, .lesson .kc, .lesson .ow, .lesson .kd { color: #8a3fb0; font-weight: 700 }
+.lesson .nb, .lesson .bp { color: #1a63a8 } .lesson .nf { color: #0d6e6e; font-weight: 700 }
+.lesson .s, .lesson .s1, .lesson .s2, .lesson .sa { color: #2f7d3f } .lesson .si, .lesson .se { color: #b0561a }
+.lesson .mi, .lesson .mf { color: #b0561a }
+.lesson .c, .lesson .c1 { color: #8a8f83; font-style: italic }
+.lesson pre .m { background: none; padding: 0; color: #b0561a; font-size: 1em }
+.lesson .steps { background: #fff; border: 1.5px dashed #c6cfd8; border-radius: .7rem; padding: .6rem 1rem; margin: 1em 0 }
+.lesson .st { display: flex; gap: .75rem; padding: .1rem 0 } .lesson .st b { flex: none; min-width: 3.5rem; color: var(--course) }
+.lesson .flow { text-align: center; overflow-x: auto }
+.lesson .flow svg { display: inline-block; max-width: 100%; height: auto }
+.lesson .flow text { font: 500 12.2px var(--font-sans); fill: #22303f }
+.lesson .flow text.lab { font: 700 11px var(--font-sans); fill: #42526a }
+.lesson .exq .ex { background: var(--course) }
+
+/* Bits shared with quiz/exam cards (question & option HTML) */
+.rich p { margin: 0 0 .5em } .rich p:last-child { margin: 0 }
+.rich .katex { font-size: 1.05em }
+.rich .katex-display { margin: .4em 0; overflow-x: auto; overflow-y: hidden }
+.rich code { font-family: var(--font-mono); font-size: .88em; background: #f0eee8; padding: .1em .35em; border-radius: 4px }
+.rich ul { list-style: disc; padding-left: 1.3em } .rich ol { list-style: decimal; padding-left: 1.3em }
+.lesson .callout > div:last-child { flex: 1; min-width: 0 }
+.lesson figure.code { text-align: left }
+/* Cheat sheets inside lessons */
+.lesson .cheat .grid { column-gap: 1.5rem }
+@media (min-width: 760px) { .lesson .cheat .grid { column-count: 2 } }
+.lesson .cheat .box { break-inside: avoid; margin-bottom: 1.1rem; font-size: .95em }
+.lesson .cheat .box > h2 { font: 700 .95rem var(--font-sans); color: #fff; background: var(--course); margin: 0 0 .5rem; padding: .3rem .7rem; border-radius: .4rem }
+.lesson .cheat pre { margin: 0 0 .4rem; background: var(--paper); border-radius: .4rem; padding: .4rem .6rem; font: 400 .82rem/1.45 var(--font-mono); white-space: pre-wrap }
+.lesson .cheat table { min-width: 0 }
+.lesson .cheat > h1 { display: none }
