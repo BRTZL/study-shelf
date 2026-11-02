@@ -59,15 +59,16 @@ export default function ExamRun() {
     return (
       <div className="mx-auto max-w-2xl">
         {back}
-        <div className="rounded-3xl bg-course-soft p-7 text-center sm:p-10">
-          <h1 className="font-heading text-3xl font-bold">{exam.title}</h1>
+        <div className="tile p-7 text-center sm:p-10">
+          <div className="press mx-auto mb-4 grid size-16 place-items-center rounded-3xl bg-course text-white"><ListChecks className="size-8" /></div>
+          <h1 className="display text-3xl font-extrabold">{exam.title}</h1>
           <p className="mt-3 text-muted-foreground">{exam.blurb}</p>
           <div className="mt-4 flex justify-center gap-4 text-sm font-medium">
             <span className="inline-flex items-center gap-1"><ListChecks className="size-4" />{exam.kind === 'written' ? t.problems(exam.items.length) : t.questions(exam.items.length)}</span>
             <span className="inline-flex items-center gap-1"><Clock className="size-4" />{t.minutes(exam.minutes)}</span>
           </div>
           <p className="mx-auto mt-5 max-w-md text-sm text-muted-foreground">{exam.kind === 'written' ? t.writtenHow : t.mcqHow}</p>
-          <Button size="lg" className="mt-6 bg-course hover:bg-course/90" onClick={start}><Play className="size-4" />{t.start}</Button>
+          <Button variant="course" size="xl" className="mt-7 w-full max-w-xs" onClick={start}><Play className="size-5" />{t.start}</Button>
         </div>
       </div>
     )
@@ -79,18 +80,18 @@ export default function ExamRun() {
     return (
       <div className="mx-auto max-w-3xl">
         {back}
-        <div className="rounded-3xl bg-course-soft p-7 text-center">
+        <div className="tile p-7 text-center animate-pop">
           <Trophy className="mx-auto size-9 text-course" />
           <div className="mt-2 text-sm font-semibold uppercase tracking-widest text-course">{t.score}</div>
-          <div className="font-heading text-5xl font-bold tabular-nums">{pct}%</div>
+          <div className="display text-6xl font-extrabold tabular-nums text-course">{pct}%</div>
           <div className="mt-1 text-sm text-muted-foreground tabular-nums">{last.score} / {last.max} · {fmtTime(last.secs)}</div>
-          <Button className="mt-5" onClick={start}><Play className="size-4" />{t.retake}</Button>
+          <Button variant="course" size="xl" className="mt-6" onClick={start}><Play className="size-5" />{t.retake}</Button>
         </div>
-        <h2 className="mb-4 mt-10 text-2xl font-bold">{t.review}</h2>
+        <h2 className="mb-4 mt-10 font-heading text-2xl font-bold">{t.review}</h2>
         <div className="space-y-5">
           {exam.kind === 'mcq'
             ? exam.items.map((q, i) => (
-              <div key={q.id} className="rounded-2xl border bg-card p-5">
+              <div key={q.id} className="tile p-4 sm:p-5">
                 <QuestionView q={q} number={`${i + 1}`} picked={last.answers?.[q.id]} reveal sourceLabel={t.source} />
               </div>))
             : exam.items.map((x, i) => (
@@ -109,12 +110,12 @@ export default function ExamRun() {
   return (
     <div className="mx-auto max-w-3xl">
       {back}
-      <h1 className="font-heading text-3xl font-bold">{exam.title}</h1>
+      <h1 className="display text-3xl font-extrabold">{exam.title}</h1>
       <p className="mt-1 text-sm text-muted-foreground">{exam.kind === 'written' ? t.writtenHow : t.mcqHow}</p>
       <div className="mt-6 space-y-5">
         {exam.kind === 'mcq'
           ? exam.items.map((q, i) => (
-            <div key={q.id} className="rounded-2xl border bg-card p-5">
+            <div key={q.id} className="tile p-4 sm:p-5">
               <QuestionView q={q} number={`${i + 1}`} picked={r.answers[q.id]} reveal={false}
                 onPick={k => set(run => { run.answers[q.id] = k })} />
             </div>))
@@ -126,15 +127,15 @@ export default function ExamRun() {
       </div>
 
       <div className="sticky bottom-3 z-20 mt-8">
-        <div className="flex items-center gap-3 rounded-2xl border bg-card/95 p-3 shadow-lg backdrop-blur">
+        <div className="tile flex items-center gap-2 bg-card/95 p-2.5 shadow-lg backdrop-blur">
           <span className={cn('inline-flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-sm font-semibold tabular-nums', left < 0 ? 'bg-bad/10 text-bad' : left < 300 ? 'bg-amber-100 text-amber-900' : 'bg-secondary')}>
-            <Clock className="size-4" />{left >= 0 ? `${fmtTime(left)} ${t.timeLeft}` : `${fmtTime(-left)} ${t.overtime}`}
+            <Clock className="size-4" />{fmtTime(Math.abs(left))}<span className="hidden font-medium sm:inline">{left >= 0 ? t.timeLeft : t.overtime}</span>
           </span>
-          <span className="hidden text-sm text-muted-foreground sm:inline tabular-nums">{exam.items.length - unanswered}/{exam.items.length}</span>
+          <span className="text-sm font-semibold text-muted-foreground tabular-nums">{exam.items.length - unanswered}/{exam.items.length}</span>
           <div className="ml-auto flex items-center gap-1">
             <Confirm destructive trigger={<Button variant="ghost" size="icon" aria-label={t.abandon}><Trash2 className="size-4" /></Button>}
               title={t.abandonQ} body={t.abandonBody} ok={t.abandon} cancel={t.cancel} onOk={discard} />
-            <Confirm trigger={<Button className="bg-course hover:bg-course/90">{t.submit}</Button>}
+            <Confirm trigger={<Button variant="course" size="lg" className="h-11 rounded-xl px-4"><span className="sm:hidden">{t.finishShort}</span><span className="hidden sm:inline">{t.submit}</span></Button>}
               title={t.submitQ} body={t.submitBody(unanswered)} ok={t.submit} cancel={t.cancel} onOk={finish} />
           </div>
         </div>
@@ -150,7 +151,7 @@ function ProblemCard({ x, i, t, shown, hint, marks, onShow, onHint, onMark, read
   const all = shown >= x.steps.length
   const opts: [number, string][] = [[0, t.zero], [Math.round(x.points / 2), t.half], [x.points, t.full]]
   return (
-    <div className="rounded-2xl border bg-card p-5">
+    <div className="tile p-4 sm:p-5">
       <div className="flex items-baseline justify-between gap-3">
         <span className="font-heading text-lg font-bold text-course">{i + 1}.</span>
         <span className="ml-auto text-xs font-semibold text-muted-foreground">{x.points} {t.points}</span>
@@ -186,7 +187,7 @@ function ProblemCard({ x, i, t, shown, hint, marks, onShow, onHint, onMark, read
           <span className="text-sm text-muted-foreground">{t.markYourself}</span>
           {opts.map(([v, l]) => (
             <button key={l} type="button" disabled={readOnly} onClick={() => onMark?.(v)}
-              className={cn('rounded-full border px-3 py-1 text-sm transition', marks === v ? 'border-course bg-course text-white' : 'bg-card hover:border-course/50', readOnly && marks !== v && 'opacity-50')}>
+              className={cn('rounded-xl border-2 px-3 py-1.5 text-sm font-semibold transition', marks === v ? 'border-course bg-course text-white shadow-[0_3px_0_0_var(--course-edge)]' : 'border-border bg-card shadow-[0_3px_0_0_var(--border)] hover:bg-secondary', readOnly && marks !== v && 'opacity-50')}>
               {l} · {v}
             </button>
           ))}

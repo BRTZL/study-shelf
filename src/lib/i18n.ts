@@ -1,7 +1,7 @@
 import type { Lang } from './types'
 
 const en = {
-  overview: 'Overview', lessons: 'Lessons', practice: 'Practice', exams: 'Mock exams', cards: 'Flashcards',
+  overview: 'Home', lessons: 'Lessons', practice: 'Practice', exams: 'Mock exams', examsShort: 'Exams', cards: 'Flashcards',
   allCourses: 'All courses', openPdf: 'Open the PDF guide', pdfPages: (n: number) => `${n} pages · cheat sheet included`,
   chaptersRead: 'Lessons read', answered: 'Questions answered', accuracy: 'Accuracy', cardsKnown: 'Cards you know', bestExam: 'Best exam',
   continueReading: 'Continue reading', startReading: 'Start reading', chapter: 'Chapter', markRead: 'Mark as read', readDone: 'Read',
@@ -14,7 +14,7 @@ const en = {
   cancel: 'Cancel', reset: 'Reset', missedCount: (n: number) => `${n} missed`,
   minutes: (n: number) => `${n} min`, examCount: (n: number) => `${n} ${n === 1 ? 'exam' : 'exams'} to try`, questions: (n: number) => `${n} questions`, problems: (n: number) => `${n} problems`,
   start: 'Start', resume: 'Resume', retake: 'Take again', attempts: 'Attempts', inProgress: 'In progress',
-  submit: 'Finish & see score', submitQ: 'Finish the exam?', submitBody: (n: number) => n ? `${n} still unanswered. They count as wrong.` : 'You answered everything.',
+  submit: 'Finish & see score', finishShort: 'Finish', submitQ: 'Finish the exam?', submitBody: (n: number) => n ? `${n} still unanswered. They count as wrong.` : 'You answered everything.',
   timeLeft: 'left', overtime: 'over time', score: 'Score', review: 'Review', yourAnswer: 'Your answer',
   hint: 'Hint', showStep: 'Show next step', showAll: 'Show full solution', hideSolution: 'Hide', solution: 'Solution', answer: 'Answer',
   markYourself: 'Mark yourself honestly:', zero: 'Missed', half: 'Partly', full: 'Got it', points: 'pts',
@@ -25,24 +25,24 @@ const en = {
   cardsDone: (k: number, t: number) => `You know ${k} of ${t} cards in this set.`, shuffleRound: 'New round', onlyUnknown: 'Only the ones I don’t know',
   extras: 'Extra tools', notes: 'Notes about the course material', saved: 'Progress is saved in this browser.',
   resetAll: 'Reset all progress', resetAllQ: 'Delete all progress for this course?', resetAllBody: 'Lessons, practice, cards and exam history for this course are cleared on this device.',
-  loading: 'Loading…', failed: 'Could not load this course.',
+  loading: 'Loading…', hello: 'Pick up where you left off', topicMastery: 'How well you know each topic', notStarted: 'Not started yet', continueBtn: 'Continue', checkBtn: 'Check', skip: 'Skip', streakRight: (n: number) => `${n} in a row!`, lessonPath: 'Your path', minRead: (n: number) => `${n} min read`, readingTime: 'Reading', sessionDone: 'Session complete', sessionScore: (r: number, n: number) => `${r} of ${n} right`, failed: 'Could not load this course.',
 }
 
 const tr: typeof en = {
-  overview: 'Genel bakış', lessons: 'Dersler', practice: 'Alıştırma', exams: 'Deneme sınavları', cards: 'Kartlar',
+  overview: 'Özet', lessons: 'Dersler', practice: 'Alıştırma', exams: 'Deneme sınavları', examsShort: 'Denemeler', cards: 'Kartlar',
   allCourses: 'Tüm dersler', openPdf: 'PDF rehberi aç', pdfPages: (n: number) => `${n} sayfa · özet kartı dahil`,
   chaptersRead: 'Okunan bölüm', answered: 'Cevaplanan soru', accuracy: 'Doğruluk', cardsKnown: 'Bildiğin kart', bestExam: 'En iyi deneme',
   continueReading: 'Okumaya devam et', startReading: 'Okumaya başla', chapter: 'Bölüm', markRead: 'Okundu olarak işaretle', readDone: 'Okundu',
   nextChapter: 'Sonraki bölüm', prevChapter: 'Önceki', backToLessons: 'Tüm bölümler', finishedAll: 'Bütün bölümleri bitirdin!',
   source: 'Kaynak',
-  topics: 'Konular', all: 'Hepsi', modeNew: 'Önce yeniler', modeMissed: 'Yanlışlarım', modeAll: 'Hepsi',
+  topics: 'Konular', all: 'Hepsi', modeNew: 'Önce yeniler', modeMissed: 'Yanlışlarım', modeAll: 'Karışık',
   noQuestions: 'Burada soru yok. Başka bir konu ya da mod seç.', allDone: 'Bu seti bitirdin!', restart: 'Tekrar',
   next: 'Sonraki', correct: 'Doğru!', wrong: 'Yanlış.', theAnswer: 'Doğru cevap', question: 'Soru', of: '/',
   resetPractice: 'Alıştırmayı sıfırla', resetQ: 'Bu dersin alıştırma cevapları sıfırlansın mı?', resetBody: 'Cevapların ve doğruluk oranın sıfırlanır. Dersler, kartlar ve denemeler etkilenmez.',
   cancel: 'Vazgeç', reset: 'Sıfırla', missedCount: (n: number) => `${n} yanlış`,
   minutes: (n: number) => `${n} dk`, examCount: (n: number) => `${n} deneme sınavı`, questions: (n: number) => `${n} soru`, problems: (n: number) => `${n} problem`,
   start: 'Başla', resume: 'Devam et', retake: 'Tekrar çöz', attempts: 'Denemeler', inProgress: 'Devam ediyor',
-  submit: 'Bitir ve puanı gör', submitQ: 'Sınavı bitirmek istiyor musun?', submitBody: (n: number) => n ? `${n} soru boş. Boşlar yanlış sayılır.` : 'Bütün soruları cevapladın.',
+  submit: 'Bitir ve puanı gör', finishShort: 'Bitir', submitQ: 'Sınavı bitirmek istiyor musun?', submitBody: (n: number) => n ? `${n} soru boş. Boşlar yanlış sayılır.` : 'Bütün soruları cevapladın.',
   timeLeft: 'kaldı', overtime: 'süre aşıldı', score: 'Puan', review: 'Gözden geçir', yourAnswer: 'Senin cevabın',
   hint: 'İpucu', showStep: 'Sonraki adım', showAll: 'Tüm çözümü göster', hideSolution: 'Gizle', solution: 'Çözüm', answer: 'Cevap',
   markYourself: 'Kendine dürüstçe puan ver:', zero: 'Yapamadım', half: 'Kısmen', full: 'Yaptım', points: 'puan',
@@ -53,7 +53,7 @@ const tr: typeof en = {
   cardsDone: (k: number, t: number) => `Bu setteki ${t} karttan ${k} tanesini biliyorsun.`, shuffleRound: 'Yeni tur', onlyUnknown: 'Sadece bilmediklerim',
   extras: 'Ek araçlar', notes: 'Ders materyali hakkında notlar', saved: 'İlerlemen bu tarayıcıda kaydedilir.',
   resetAll: 'Tüm ilerlemeyi sıfırla', resetAllQ: 'Bu dersin bütün ilerlemesi silinsin mi?', resetAllBody: 'Bu cihazdaki okuma, alıştırma, kart ve deneme geçmişi silinir.',
-  loading: 'Yükleniyor…', failed: 'Ders yüklenemedi.',
+  loading: 'Yükleniyor…', hello: 'Kaldığın yerden devam et', topicMastery: 'Konulara göre durumun', notStarted: 'Henüz başlamadın', continueBtn: 'Devam', checkBtn: 'Kontrol et', skip: 'Geç', streakRight: (n: number) => `Üst üste ${n} doğru!`, lessonPath: 'Yol haritan', minRead: (n: number) => `${n} dk okuma`, readingTime: 'Okuma', sessionDone: 'Tur tamamlandı', sessionScore: (r: number, n: number) => `${n} sorudan ${r} doğru`, failed: 'Ders yüklenemedi.',
 }
 
 export type Strings = typeof en

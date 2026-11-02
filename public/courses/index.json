@@ -17,6 +17,42 @@
     "exams": 3
    },
    "updated": "2026-11-02"
+  },
+  {
+   "id": "mat2039",
+   "code": "MAT 2039",
+   "title": "Differential Equations I",
+   "blurb": "Weeks 1–6: separable, exact, linear, Bernoulli, homogeneous, Riccati and Clairaut equations, applications and higher-order linear equations. Includes the 2023 midterm, solved.",
+   "lang": "en",
+   "color": "#2f5aa8",
+   "soft": "#e6edf9",
+   "pdf": "courses/mat2039/MAT2039_Exam_Guide.pdf",
+   "pdfPages": 114,
+   "counts": {
+    "chapters": 17,
+    "questions": 90,
+    "cards": 82,
+    "exams": 8
+   },
+   "updated": "2026-11-02"
+  },
+  {
+   "id": "turkdili",
+   "code": "TÜRK DİLİ I",
+   "title": "Türk Dili I",
+   "blurb": "Dil ve kültür, dillerin sınıflandırılması, Türkçenin alfabeleri, Türk dilinin tarihî gelişimi (I–III) ve modern Türkçenin yayılma alanları.",
+   "lang": "tr",
+   "color": "#a4452c",
+   "soft": "#f8ebe5",
+   "pdf": "courses/turkdili/TurkDili1_Sinav_Rehberi.pdf",
+   "pdfPages": 88,
+   "counts": {
+    "chapters": 8,
+    "questions": 180,
+    "cards": 156,
+    "exams": 4
+   },
+   "updated": "2026-11-02"
   }
  ]
 }

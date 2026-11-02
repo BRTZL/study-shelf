@@ -2,7 +2,7 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/inter";
-@import "@fontsource-variable/fraunces";
+@import "@fontsource-variable/bricolage-grotesque";
 @import "@fontsource/jetbrains-mono/400.css";
 @import "katex/dist/katex.min.css";
 @import "./lesson.css";
@@ -10,13 +10,17 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-    --font-heading: 'Fraunces Variable', Georgia, serif;
+    --font-heading: 'Bricolage Grotesque Variable', 'Inter Variable', sans-serif;
     --font-sans: 'Inter Variable', 'Helvetica Neue', Arial, sans-serif;
     --font-mono: 'JetBrains Mono', Menlo, monospace;
     --color-course: var(--course);
     --color-course-soft: var(--course-soft);
     --color-good: var(--good);
     --color-bad: var(--bad);
+    --color-good-soft: var(--good-soft);
+    --color-bad-soft: var(--bad-soft);
+    --color-course-edge: var(--course-edge);
+    --color-course-ink: var(--course-ink);
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -58,22 +62,22 @@
 }
 
 :root {
-    --background: oklch(0.985 0.006 85);
-    --foreground: oklch(0.29 0.03 250);
+    --background: #f6f4ef;
+    --foreground: #1d2433;
     --card: oklch(1 0 0);
     --card-foreground: oklch(0.29 0.03 250);
     --popover: oklch(1 0 0);
     --popover-foreground: oklch(0.29 0.03 250);
-    --primary: oklch(0.3 0.055 245);
+    --primary: #1d2433;
     --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.955 0.01 85);
+    --secondary: #efece5;
     --secondary-foreground: oklch(0.3 0.05 245);
-    --muted: oklch(0.955 0.01 85);
-    --muted-foreground: oklch(0.5 0.03 250);
+    --muted: #efece5;
+    --muted-foreground: #6b7183;
     --accent: oklch(0.95 0.012 85);
     --accent-foreground: oklch(0.3 0.05 245);
     --destructive: oklch(0.577 0.2 30);
-    --border: oklch(0.91 0.01 85);
+    --border: #e5e1d8;
     --input: oklch(0.9 0.012 85);
     --ring: oklch(0.6 0.06 245);
     --chart-1: oklch(0.6 0.1 200);
@@ -81,11 +85,13 @@
     --chart-3: oklch(0.6 0.13 40);
     --chart-4: oklch(0.7 0.12 85);
     --chart-5: oklch(0.5 0.1 320);
-    --radius: 0.75rem;
+    --radius: 0.9rem;
     --course: #0d6e6e;
     --course-soft: #e3f2f0;
-    --good: #1f7a4d;
-    --bad: #c0392b;
+    --good: #3f9b1f;
+    --good-soft: #e6f6dc;
+    --bad-soft: #fde7e4;
+    --bad: #e0442c;
     --sidebar: oklch(0.985 0 0);
     --sidebar-foreground: oklch(0.145 0 0);
     --sidebar-primary: oklch(0.205 0 0);
@@ -141,5 +147,31 @@
     @apply font-sans;
     font-feature-settings: "cv11", "ss01";
     }
-  h1, h2, h3 { font-family: var(--font-heading); }
+  h1, h2, h3 { font-family: var(--font-heading); letter-spacing: -0.02em; }
 }
+/* ---- Study Shelf design language: tactile, warm, rounded ---- */
+:root { --course-edge: color-mix(in oklch, var(--course) 72%, black); --course-ink: color-mix(in oklch, var(--course) 80%, black); }
+.press {
+  --edge: var(--course-edge);
+  box-shadow: 0 4px 0 0 var(--edge);
+  transition: transform .08s ease, box-shadow .08s ease, background-color .15s, border-color .15s;
+}
+.press:hover:not(:disabled) { filter: brightness(1.04) }
+.press:active:not(:disabled) { transform: translateY(3px); box-shadow: 0 1px 0 0 var(--edge) }
+.press:disabled { box-shadow: 0 4px 0 0 var(--border) }
+.tile {
+  background: var(--card);
+  border: 2px solid var(--border);
+  box-shadow: 0 3px 0 0 var(--border);
+  border-radius: 1.25rem;
+}
+a.tile, button.tile { transition: transform .08s ease, box-shadow .08s ease, border-color .15s }
+a.tile:hover, button.tile:hover:not(:disabled) { border-color: color-mix(in oklch, var(--course) 35%, var(--border)) }
+a.tile:active, button.tile:active:not(:disabled) { transform: translateY(2px); box-shadow: 0 1px 0 0 var(--border) }
+.display { font-family: var(--font-heading); font-variation-settings: "opsz" 96, "wdth" 100; letter-spacing: -0.035em; line-height: 1.02 }
+.eyebrow-label { font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase }
+.pattern-dots { background-image: radial-gradient(color-mix(in oklch, white 30%, transparent) 1.2px, transparent 1.3px); background-size: 16px 16px }
+@keyframes slide-up { from { transform: translateY(100%); opacity: .4 } to { transform: none; opacity: 1 } }
+.animate-slide-up { animation: slide-up .22s cubic-bezier(.2,.8,.2,1) }
+@keyframes pop { 0% { transform: scale(.96) } 60% { transform: scale(1.02) } 100% { transform: none } }
+.animate-pop { animation: pop .25s ease }

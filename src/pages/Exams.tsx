@@ -1,47 +1,47 @@
 import { Link } from 'react-router-dom'
-import { ClipboardCheck, Clock, History, PenLine, Play } from 'lucide-react'
+import { ChevronRight, Clock, History, ListChecks, PenLine } from 'lucide-react'
 import { useCourseCtx } from '@/components/shelf/CourseShell'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
+import { Ring } from '@/components/shelf/Art'
 
 export default function Exams() {
   const { course: c, t, p } = useCourseCtx()
   const date = (ms: number) => new Date(ms).toLocaleDateString(c.lang === 'tr' ? 'tr-TR' : 'en-GB', { day: 'numeric', month: 'short' })
   return (
-    <div className="mx-auto max-w-3xl">
-      <h1 className="mb-5 text-3xl font-bold">{t.exams}</h1>
-      <div className="space-y-3">
+    <div className="mx-auto max-w-2xl">
+      <h1 className="display text-4xl font-extrabold">{t.exams}</h1>
+      <div className="mt-6 space-y-3.5">
         {c.exams.map(e => {
           const st = p.exams[e.id]
           const attempts = st?.attempts ?? []
           const best = attempts.length ? Math.max(...attempts.map(a => Math.round((100 * a.score) / Math.max(1, a.max)))) : null
           return (
-            <div key={e.id} className="rounded-2xl border bg-card p-5">
-              <div className="flex flex-wrap items-start justify-between gap-3">
+            <div key={e.id} className="tile overflow-hidden">
+              <Link to={e.id} className="flex items-center gap-4 p-4 sm:p-5">
+                <Ring value={best ?? 0} size={58} stroke={6} className={best === null ? 'text-muted-foreground' : 'text-course'}>
+                  {best === null
+                    ? (e.kind === 'written' ? <PenLine className="size-5 text-muted-foreground" /> : <ListChecks className="size-5 text-muted-foreground" />)
+                    : <span className="text-sm font-extrabold tabular-nums text-foreground">{best}</span>}
+                </Ring>
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-2">
-                    <h2 className="font-heading text-xl font-bold">{e.title}</h2>
-                    {st?.run && <Badge className="bg-amber-100 text-amber-900">{t.inProgress}</Badge>}
+                    <h2 className="font-heading text-lg font-bold leading-tight">{e.title}</h2>
+                    {st?.run && <span className="rounded-lg bg-amber-100 px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide text-amber-800">{t.inProgress}</span>}
                   </div>
-                  <p className="mt-1 text-sm text-muted-foreground">{e.blurb}</p>
-                  <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
-                    <span className="inline-flex items-center gap-1">{e.kind === 'written' ? <PenLine className="size-4" /> : <ClipboardCheck className="size-4" />}
-                      {e.kind === 'written' ? t.problems(e.items.length) : t.questions(e.items.length)}</span>
-                    <span className="inline-flex items-center gap-1"><Clock className="size-4" />{t.minutes(e.minutes)}</span>
-                    {best !== null && <span className="font-semibold text-course">{t.bestExam}: {best}%</span>}
+                  <p className="mt-0.5 line-clamp-2 text-sm text-muted-foreground">{e.blurb}</p>
+                  <div className="mt-1.5 flex flex-wrap gap-x-3 text-xs font-semibold text-muted-foreground">
+                    <span>{e.kind === 'written' ? t.problems(e.items.length) : t.questions(e.items.length)}</span>
+                    <span className="inline-flex items-center gap-1"><Clock className="size-3.5" />{t.minutes(e.minutes)}</span>
                   </div>
                 </div>
-                <Button asChild className="bg-course hover:bg-course/90">
-                  <Link to={e.id}><Play className="size-4" />{st?.run ? t.resume : attempts.length ? t.retake : t.start}</Link>
-                </Button>
-              </div>
+                <ChevronRight className="size-5 shrink-0 text-muted-foreground" />
+              </Link>
               {attempts.length > 0 && (
-                <div className="mt-4 flex flex-wrap items-center gap-2 border-t pt-3 text-xs text-muted-foreground">
-                  <History className="size-3.5" />{t.attempts}:
-                  {attempts.slice(-6).map(a => (
-                    <span key={a.at} className="rounded-full bg-secondary px-2 py-0.5 tabular-nums">{date(a.at)} · {Math.round((100 * a.score) / Math.max(1, a.max))}%</span>
+                <div className="flex items-center gap-2 overflow-x-auto border-t-2 border-border bg-secondary/50 px-4 py-2.5 text-xs [scrollbar-width:none]">
+                  <History className="size-3.5 shrink-0 text-muted-foreground" />
+                  {attempts.slice(-5).reverse().map(a => (
+                    <span key={a.at} className="shrink-0 rounded-lg bg-card px-2 py-0.5 font-semibold tabular-nums">{date(a.at)} · {Math.round((100 * a.score) / Math.max(1, a.max))}%</span>
                   ))}
-                  <Link to={`${e.id}?review=1`} className="ml-auto font-medium text-course hover:underline">{t.review}</Link>
+                  <Link to={`${e.id}?review=1`} className="ml-auto shrink-0 pl-2 font-bold text-course">{t.review}</Link>
                 </div>
               )}
             </div>
