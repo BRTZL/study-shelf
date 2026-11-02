@@ -77,6 +77,7 @@ function CourseCard({ c }: { c: CourseMeta }) {
     <div style={cssVars(c)} className="tile group relative flex flex-col overflow-hidden transition-transform active:translate-y-0.5">
       <CourseArt id={c.id} code={c.code} className="h-32" />
       <span className="absolute right-3 top-3 rounded-full bg-black/20 px-2.5 py-1 text-[11px] font-bold tracking-wider text-white backdrop-blur-sm">{c.code}</span>
+      {c.langs && c.langs.length > 1 && <span className="absolute left-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-bold tracking-wider text-course-ink">{c.langs.map(l => l.toUpperCase()).join(' · ')}</span>}
       <div className="flex flex-1 flex-col p-5">
         <h3 className="font-heading text-[1.4rem] font-bold leading-tight">
           <Link to={`/c/${c.id}`} className="outline-none after:absolute after:inset-0 after:rounded-[1.1rem] focus-visible:after:ring-4 focus-visible:after:ring-course/30">{c.title}</Link>

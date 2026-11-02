@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import type { Course, Manifest } from './types'
+import type { Course, Lang, Manifest } from './types'
 
 const base = import.meta.env.BASE_URL // './' — relative, so the build works under any path
 export const asset = (p: string) => `${base}${p}`.replace(/^\.\/\.\//, './')
@@ -30,4 +30,13 @@ function useJSON<T>(path: string | null): State<T> {
 }
 
 export const useManifest = () => useJSON<Manifest>('courses/index.json')
-export const useCourse = (id: string | undefined) => useJSON<Course>(id ? `courses/${id}/course.json` : null)
+/** Loads the course in the reader's chosen language (falls back to the course's own language). */
+export function useCourse(id: string | undefined, pref: Lang | null) {
+  const { data: manifest, error } = useManifest()
+  const meta = manifest?.courses.find(c => c.id === id)
+  const langs = meta ? (meta.langs ?? [meta.lang]) : []
+  const lang = meta ? (pref && langs.includes(pref) ? pref : meta.lang) : null
+  const path = id && meta && lang ? `courses/${id}/course${lang === meta.lang ? '' : `.${lang}`}.json` : null
+  const course = useJSON<Course>(path)
+  return { ...course, error: course.error ?? (manifest && !meta ? 'unknown course' : error), langs, lang }
+}

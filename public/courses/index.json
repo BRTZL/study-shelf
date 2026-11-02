@@ -24,6 +24,10 @@
    "title": "Differential Equations I",
    "blurb": "Weeks 1–6: separable, exact, linear, Bernoulli, homogeneous, Riccati and Clairaut equations, applications and higher-order linear equations. Includes the 2023 midterm, solved.",
    "lang": "en",
+   "langs": [
+    "en",
+    "tr"
+   ],
    "color": "#2f5aa8",
    "soft": "#e6edf9",
    "pdf": "courses/mat2039/MAT2039_Exam_Guide.pdf",

@@ -6,6 +6,7 @@ export interface CourseMeta {
   title: string
   blurb: string
   lang: Lang
+  langs?: Lang[] // other editions: courses/<id>/course.<lang>.json
   color: string
   soft: string
   pdf?: string

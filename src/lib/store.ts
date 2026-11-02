@@ -1,4 +1,5 @@
 import { useCallback, useSyncExternalStore } from 'react'
+import type { Lang } from './types'
 
 /** Everything we remember for one course. Stored under one namespaced, versioned key. */
 export interface Progress {
@@ -75,4 +76,18 @@ export const readProgress = load
 export function resetProgress(course: string, part?: keyof Omit<Progress, 'v'>) {
   const next = part ? { ...structuredClone(load(course)), [part]: {} } : empty()
   save(course, next)
+}
+
+/** Reader's language choice per course (only matters for courses with several editions). */
+const langKey = (course: string) => `studyshelf:lang:${course}`
+const langSubs = new Set<() => void>()
+export function useLangPref(course: string) {
+  const subscribe = useCallback((f: () => void) => { langSubs.add(f); return () => { langSubs.delete(f) } }, [])
+  const get = () => { try { return localStorage.getItem(langKey(course)) as Lang | null } catch { return null } }
+  const pref = useSyncExternalStore(subscribe, get)
+  const set = useCallback((l: Lang) => {
+    try { localStorage.setItem(langKey(course), l) } catch { /* ignore */ }
+    langSubs.forEach(f => f())
+  }, [course])
+  return [pref, set] as const
 }

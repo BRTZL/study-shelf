@@ -3,7 +3,7 @@ import { Link, NavLink, Outlet, useLocation, useOutletContext, useParams } from 
 import { BookOpen, ChevronLeft, ClipboardCheck, House, Layers, Target } from 'lucide-react'
 import { useCourse } from '@/lib/data'
 import { strings, type Strings } from '@/lib/i18n'
-import { useProgress, type Progress } from '@/lib/store'
+import { useLangPref, useProgress, type Progress } from '@/lib/store'
 import type { Course } from '@/lib/types'
 import { cn } from '@/lib/utils'
 import { Logo } from './Logo'
@@ -13,7 +13,8 @@ export const useCourseCtx = () => useOutletContext<CourseCtx>()
 
 export default function CourseShell() {
   const { id = '' } = useParams()
-  const { data: course, error } = useCourse(id)
+  const [pref, setPref] = useLangPref(id)
+  const { data: course, error, langs, lang } = useCourse(id, pref)
   const [p, update] = useProgress(id)
   const { pathname } = useLocation()
   useEffect(() => { window.scrollTo(0, 0) }, [pathname])
@@ -46,7 +47,17 @@ export default function CourseShell() {
             {course?.code.toLocaleLowerCase(course.lang) !== course?.title.toLocaleLowerCase(course?.lang) && <div className="eyebrow-label text-course">{course?.code ?? '…'}</div>}
             <div className="truncate font-heading text-[15px] font-bold">{course?.title}</div>
           </div>
-          <nav className="ml-auto hidden items-center gap-1 md:flex">
+          {langs.length > 1 && (
+            <div role="group" aria-label="Language" className="ml-auto flex shrink-0 rounded-xl border-2 border-border bg-card p-0.5 text-xs font-bold md:order-last md:ml-2">
+              {langs.map(l => (
+                <button key={l} type="button" aria-pressed={lang === l} onClick={() => setPref(l)}
+                  className={cn('rounded-lg px-2.5 py-1.5 uppercase tracking-wide transition', lang === l ? 'bg-course text-white' : 'text-muted-foreground hover:text-foreground')}>
+                  {l === 'tr' ? 'TR' : 'EN'}
+                </button>
+              ))}
+            </div>
+          )}
+          <nav className={cn('hidden items-center gap-1 md:flex', langs.length > 1 ? 'md:ml-auto' : 'ml-auto')}>
             {tabs.map(({ to, end, label, icon: Icon }) => (
               <NavLink key={to} to={to} end={end}
                 className={({ isActive }) => cn('flex items-center gap-1.5 rounded-xl px-3 py-2 text-sm font-semibold transition-colors',
