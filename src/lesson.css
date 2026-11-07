@@ -128,3 +128,6 @@
 .lesson .cheat pre { margin: 0 0 .4rem; background: var(--paper); border-radius: .4rem; padding: .4rem .6rem; font: 400 .82rem/1.45 var(--font-mono); white-space: pre-wrap }
 .lesson .cheat table { min-width: 0 }
 .lesson .cheat > h1 { display: none }
+
+/* Turkish letters inside \text{} fall back to Inter, not the browser serif */
+.katex .text, .katex .textrm { font-family: KaTeX_Main, var(--font-sans) }

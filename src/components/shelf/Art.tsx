@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import { cn } from '@/lib/utils'
 
-const GLYPH: Record<string, string> = { csc2201: '{ }', mat2039: '∫', turkdili: 'Ğ' }
+const GLYPH: Record<string, string> = { csc2201: '{ }', mat2039: '∫', mat2037: 'A⁻¹', turkdili: 'Ğ' }
 
 /** Decorative course artwork: a big glyph over a subject-specific line pattern. */
 export function CourseArt({ id, code, className }: { id: string; code: string; className?: string }) {
@@ -16,6 +16,12 @@ export function CourseArt({ id, code, className }: { id: string; code: string; c
         {id === 'mat2039' && Array.from({ length: 6 }, (_, i) => (
           <path key={i} d={`M-10 ${20 + i * 18} C 40 ${-10 + i * 18}, 80 ${50 + i * 18}, 130 ${20 + i * 18} S 190 ${-5 + i * 18}, 215 ${20 + i * 18}`} />
         ))}
+        {id === 'mat2037' && [[110, 12, 70, 44], [140, 66, 52, 40], [96, 70, 30, 34]].map(([x, y, w, h], i) => (
+          <path key={i} d={`M${x + 6} ${y}h-6v${h}h6M${x + w - 6} ${y}h6v${h}h-6`} />
+        ))}
+        {id === 'mat2037' && Array.from({ length: 3 }, (_, r) => Array.from({ length: 3 }, (_, c) => (
+          <circle key={`${r}${c}`} cx={124 + c * 20} cy={24 + r * 11} r="2.2" />
+        )))}
         {id === 'turkdili' && Array.from({ length: 9 }, (_, i) => <circle key={i} cx="175" cy="110" r={14 + i * 13} />)}
         {!GLYPH[id] && Array.from({ length: 8 }, (_, i) => <path key={i} d={`M${i * 28} 0l40 120`} />)}
       </svg>

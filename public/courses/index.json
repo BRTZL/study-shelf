@@ -38,7 +38,29 @@
     "cards": 82,
     "exams": 8
    },
-   "updated": "2026-11-02"
+   "updated": "2026-11-07"
+  },
+  {
+   "id": "mat2037",
+   "code": "MAT 2037",
+   "title": "Linear Algebra I",
+   "blurb": "Lecture notes 3–6: linear systems and Gaussian elimination, the theory of linear systems (rank, consistency), matrix operations and inverse matrices. Includes the 2025 midterm, solved.",
+   "lang": "en",
+   "langs": [
+    "en",
+    "tr"
+   ],
+   "color": "#6b4fbb",
+   "soft": "#efeafb",
+   "pdf": "courses/mat2037/MAT2037_Exam_Guide.pdf",
+   "pdfPages": 136,
+   "counts": {
+    "chapters": 19,
+    "questions": 98,
+    "cards": 93,
+    "exams": 8
+   },
+   "updated": "2026-11-07"
   },
   {
    "id": "turkdili",
